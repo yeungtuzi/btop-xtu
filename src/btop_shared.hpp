@@ -183,6 +183,11 @@ namespace Gpu {
 	namespace Rsmi {
 		extern bool shutdown();
 	}
+	#if defined(MUSA_SUPPORT)
+	namespace Musa {
+		extern bool shutdown();
+	}
+	#endif
 	#ifdef __APPLE__
 	namespace AppleSilicon {
 		extern bool shutdown();

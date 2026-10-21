@@ -231,6 +231,9 @@ void clean_quit(int sig) {
 #ifdef GPU_SUPPORT
 	Gpu::Nvml::shutdown();
 	Gpu::Rsmi::shutdown();
+	#if defined(MUSA_SUPPORT)
+	Gpu::Musa::shutdown();
+	#endif
 	#ifdef __APPLE__
 	Gpu::AppleSilicon::shutdown();
 	#endif

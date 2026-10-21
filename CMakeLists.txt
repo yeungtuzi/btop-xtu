@@ -31,6 +31,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 option(BTOP_STATIC "Link btop statically" OFF)
 option(BTOP_GPU "Enable GPU support" ON)
 cmake_dependent_option(BTOP_RSMI_STATIC "Link statically to ROCm SMI" OFF "BTOP_GPU" OFF)
+option(BTOP_MUSA "Enable Moore Threads MUSA (MTML) GPU support" ON)
 
 # Enable LTO in release builds by default
 if(CMAKE_BUILD_TYPE MATCHES "Rel(ease|WithDebInfo)")
@@ -163,6 +164,10 @@ target_link_libraries(libbtop Threads::Threads)
 # Enable GPU support
 if(LINUX AND BTOP_GPU)
   target_compile_definitions(libbtop PUBLIC GPU_SUPPORT)
+
+  if(BTOP_MUSA)
+    target_compile_definitions(libbtop PUBLIC MUSA_SUPPORT)
+  endif()
 
   if(BTOP_RSMI_STATIC)
     # ROCm doesn't properly add it's folders to the module path if `CMAKE_MODULE_PATH` is already
