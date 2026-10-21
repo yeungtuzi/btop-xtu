@@ -2159,6 +2159,9 @@ namespace Gpu {
 						continue;
 					}
 
+					//? MTML exposes no performance state, hide the field
+					gpus_slice[i].supported_functions.pwr_state = false;
+
 					//? Device name
 					char name[MTMLX_DEVICE_NAME_BUFFER_SIZE];
 					result = mtmlxDeviceGetName(devices[i], name, MTMLX_DEVICE_NAME_BUFFER_SIZE);
