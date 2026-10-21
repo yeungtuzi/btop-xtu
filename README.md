@@ -1,3 +1,27 @@
+# btop-xtu
+
+Fork of [btop++](https://github.com/aristocratos/btop), maintained for XTU.
+On top of upstream v1.4.7 it adds:
+
+* **MUSA GPU support** - Moore Threads (MTT S-series) monitoring through the
+  MTML library (`libmtml.so`), loaded at runtime, so the binary still works on
+  machines without a Moore Threads GPU.
+* **Side-by-side GPU boxes** - the GPU boxes sit on an adaptive grid instead of
+  being stacked full-width; `gpu_box_columns = "Auto"` fits as many columns as
+  the terminal allows and a box drops detail rather than overflowing.
+
+The fork keeps its own XDG paths (`~/.config/btop-xtu`, themes under
+`share/btop-xtu`) and its own binary name, so it can coexist with an installed
+`btop`.
+
+```bash
+cmake -B build -DCMAKE_BUILD_TYPE=Release -DBTOP_GPU=ON -DBTOP_MUSA=ON
+cmake --build build -j"$(nproc)"
+sudo cmake --install build      # installs /usr/local/bin/btop-xtu
+```
+
+---
+
 # ![btop++](Img/logo.png)
 
 <a href="https://repology.org/project/btop/versions">
