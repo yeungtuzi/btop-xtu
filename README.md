@@ -126,11 +126,14 @@ btop-xtu -c my.conf      # alternate config
 btop-xtu --help
 ```
 
-`btop-xtu` only shows dedicated GPU boxes for the GPUs listed in `shown_boxes`,
-so make sure the config contains them (the preset is `cpu mem net proc`):
+On the very first run `btop-xtu` gives every GPU it recognises its own box, so a
+GPU machine shows the panels without any config editing. Cards added later are
+not picked up automatically — add the corresponding `gpuN` to `shown_boxes` by
+hand (or delete the config file to start over).
 
-`btop-xtu` 只为 `shown_boxes` 里列出的 GPU 画独立面板，记得把显卡加进去
-（默认预设是 `cpu mem net proc`）：
+首次运行时，`btop-xtu` 会自动为每张识别到的 GPU 建一个面板，GPU 机器开箱即用，
+不用手改配置。之后新插的卡不会自动出现——手动往 `shown_boxes` 里加对应的 `gpuN`
+即可（或者删掉配置文件重新生成）。
 
 ```ini
 shown_boxes = "cpu mem net proc gpu0 gpu1"
