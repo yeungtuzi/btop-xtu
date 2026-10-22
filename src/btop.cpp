@@ -886,7 +886,7 @@ static auto configure_tty_mode(std::optional<bool> force_tty) {
 			if (cli.config_file.has_value()) {
 				Config::conf_file = cli.config_file.value();
 			} else {
-				Config::conf_file = Config::conf_dir / "btop-xtu.conf";
+				Config::conf_file = Config::conf_dir / "btop.conf";
 			}
 
 			auto log_file = Config::get_log_file();
@@ -932,12 +932,12 @@ static auto configure_tty_mode(std::optional<bool> force_tty) {
 	}
 #endif
 	if (std::error_code ec; not Global::self_path.empty()) {
-		Theme::theme_dir = fs::canonical(Global::self_path / "../share/btop-xtu/themes", ec);
+		Theme::theme_dir = fs::canonical(Global::self_path / "../share/btop/themes", ec);
 		if (ec or not fs::is_directory(Theme::theme_dir) or access(Theme::theme_dir.c_str(), R_OK) == -1) Theme::theme_dir.clear();
 	}
 	//? If relative path failed, check two most common absolute paths
 	if (Theme::theme_dir.empty()) {
-		for (auto theme_path : {"/usr/local/share/btop-xtu/themes", "/usr/share/btop-xtu/themes"}) {
+		for (auto theme_path : {"/usr/local/share/btop/themes", "/usr/share/btop/themes"}) {
 			if (fs::is_directory(fs::path(theme_path)) and access(theme_path, R_OK) != -1) {
 				Theme::theme_dir = fs::path(theme_path);
 				break;

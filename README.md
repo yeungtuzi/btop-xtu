@@ -55,16 +55,18 @@ instead of overflowing, and `1` restores the old stacked layout exactly.
 `gpu_box_columns = "Auto"` 会根据终端宽度自动决定列数，空间不够时面板自动从
 Full 降到 Compact、Minimal 而不是画崩；设成 `1` 则完全恢复旧的堆叠布局。
 
-### Own identity / 独立身份
+### Drop-in replacement / 直接替换
 
-`btop-xtu` installs its own binary, config directory (`~/.config/btop-xtu`),
-state log (`~/.local/state/btop-xtu.log`) and theme directory
-(`share/btop-xtu`), so it can live next to an installed `btop` without either
-one clobbering the other's settings.
+The project is called btop-xtu, but the binary it builds is plain `btop` and it
+uses the usual `~/.config/btop`, `~/.local/state/btop.log` and `share/btop`
+paths, so it replaces an installed btop instead of living next to it — same
+command, same config, same themes. `btop --version` reports the fork version so
+you can tell them apart.
 
-`btop-xtu` 有自己的可执行文件名、配置目录（`~/.config/btop-xtu`）、日志
-（`~/.local/state/btop-xtu.log`）和主题目录（`share/btop-xtu`），可以和系统里
-已有的 `btop` 并存，互不影响配置。
+项目名叫 btop-xtu，但编译出来的可执行文件就叫 `btop`，配置、日志、主题也沿用
+`~/.config/btop`、`~/.local/state/btop.log`、`share/btop`，用来直接替换已有的
+btop：命令不变、配置不变、主题不变。`btop --version` 里的版本号带 `-xtu` 后缀，
+可以据此分辨。
 
 ## GPU support matrix / GPU 支持矩阵
 
@@ -99,7 +101,7 @@ cd btop-xtu
 cmake -B build -DCMAKE_BUILD_TYPE=Release \
       -DBTOP_GPU=ON -DBTOP_MUSA=ON
 cmake --build build -j"$(nproc)"
-sudo cmake --install build          # -> /usr/local/bin/btop-xtu
+sudo cmake --install build          # -> /usr/local/bin/btop
 ```
 
 Useful options / 常用选项:
@@ -121,17 +123,17 @@ On a Moore Threads machine, the runtime needs the driver and
 ## Usage / 使用
 
 ```bash
-btop-xtu                 # start
-btop-xtu -c my.conf      # alternate config
-btop-xtu --help
+btop                 # start
+btop -c my.conf      # alternate config
+btop --help
 ```
 
-On the very first run `btop-xtu` gives every GPU it recognises its own box, so a
+On the very first run `btop` gives every GPU it recognises its own box, so a
 GPU machine shows the panels without any config editing. Cards added later are
 not picked up automatically — add the corresponding `gpuN` to `shown_boxes` by
 hand (or delete the config file to start over).
 
-首次运行时，`btop-xtu` 会自动为每张识别到的 GPU 建一个面板，GPU 机器开箱即用，
+首次运行时，`btop` 会自动为每张识别到的 GPU 建一个面板，GPU 机器开箱即用，
 不用手改配置。之后新插的卡不会自动出现——手动往 `shown_boxes` 里加对应的 `gpuN`
 即可（或者删掉配置文件重新生成）。
 
