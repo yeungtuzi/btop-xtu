@@ -86,7 +86,7 @@ CMake 3.25+, and the usual build tools.
 依赖：C++20 编译器（GCC 11+ / Clang 14+，建议 GCC 14）、CMake 3.25+ 和常规构建工具。
 
 ```bash
-git clone https://github.com/<your-org>/btop-xtu.git
+git clone https://github.com/yeungtuzi/btop-xtu.git
 cd btop-xtu
 
 cmake -B build -DCMAKE_BUILD_TYPE=Release \

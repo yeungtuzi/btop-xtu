@@ -12,7 +12,7 @@ endif()
 
 project("btop-xtu"
   DESCRIPTION "btop++ fork with Moore Threads (MUSA) GPU support"
-  HOMEPAGE_URL "https://github.com/aristocratos/btop"
+  HOMEPAGE_URL "https://github.com/yeungtuzi/btop-xtu"
   LANGUAGES CXX
 )
 
