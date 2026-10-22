@@ -8,6 +8,13 @@ layout improvements.
 [btop++](https://github.com/aristocratos/btop) 的社区分支，专注于补齐上游缺失的 GPU 支持，
 尤其是摩尔线程（MUSA）等国产 GPU，并附带一些界面与布局上的改进。
 
+![Linux](https://img.shields.io/badge/-Linux-grey?logo=linux)
+![macOS](https://img.shields.io/badge/-OSX-black?logo=apple)
+![FreeBSD](https://img.shields.io/badge/-FreeBSD-red?logo=freebsd)
+![NetBSD](https://img.shields.io/badge/-NetBSD-black?logo=netbsd)
+![OpenBSD](https://img.shields.io/badge/-OpenBSD-black?logo=openbsd)
+![MUSA](https://img.shields.io/badge/GPU-MUSA-1f6feb)
+
 ---
 
 ## Why this fork / 为什么有这个分支
