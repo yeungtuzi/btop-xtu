@@ -411,6 +411,20 @@ namespace Shared {
 					   + (gpus[i].supported_functions.encoder_utilization or gpus[i].supported_functions.decoder_utilization)
 					   + (gpus[i].supported_functions.mem_total or gpus[i].supported_functions.mem_used)
 						* (1 + 2*(gpus[i].supported_functions.mem_total and gpus[i].supported_functions.mem_used) + 2*gpus[i].supported_functions.mem_utilization);
+
+			//* On a fresh config give every recognised GPU its own box, otherwise
+			//* the panel stays hidden until the user edits shown_boxes by hand.
+			//* Existing configs are left alone: dropping a gpu box there is a
+			//* deliberate choice and must survive an upgrade.
+			if (Config::write_new) {
+				auto shown_boxes = Config::getS("shown_boxes");
+				for (size_t i = 0; i < gpu_names.size(); ++i) {
+					const auto panel = "gpu"s + std::to_string(i);
+					if (not shown_boxes.contains(panel))
+						shown_boxes += " " + panel;
+				}
+				Config::set("shown_boxes", shown_boxes);
+			}
 		}
 	#endif
 
